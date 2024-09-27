@@ -415,3 +415,6 @@ dist-ssr
 
 #this project builds wwwroot at complite time 
 wwwroot
+
+#cache db file 
+**/TestCaseSuccessRateReportHandler.json
