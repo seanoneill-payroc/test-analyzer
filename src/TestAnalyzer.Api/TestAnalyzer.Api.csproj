@@ -1,0 +1,32 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>net9.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <UserSecretsId>46c75bfb-806d-40b5-afd4-b4c413b0f518</UserSecretsId>
+        <EnableDefaultContentItems>false</EnableDefaultContentItems>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.0-preview.6.24328.4"/>
+        <PackageReference Include="Serilog.AspNetCore" Version="8.0.2" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Testiny.Client\Testiny.Client.csproj" />
+    </ItemGroup>
+    
+    <ItemGroup>
+        <Content Include="wwwroot/**/*">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </Content>
+    </ItemGroup>
+    
+    <Target Name="BuildUI" BeforeTargets="BeforeBuild">
+        <!-- build set the svelte  ui -->
+        <Exec Command="npm ci" WorkingDirectory="../testanalyzer-ui/"/>
+        <Exec Command="npm run build" WorkingDirectory="../testanalyzer-ui/"/>
+    </Target>
+    
+</Project>
